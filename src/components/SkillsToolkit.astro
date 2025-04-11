@@ -1,0 +1,32 @@
+---
+// Data bisa ditaruh di sini atau impor dari file data lain
+const skillCategories = [
+  { title: "Languages", skills: ["Python", "R", "SQL", "JavaScript", "TypeScript", "HTML", "CSS"] },
+  { title: "Frontend", skills: ["React", "SvelteKit", "Next.js", "Astro", "Tailwind CSS", "Vite"] },
+  { title: "Backend / DB", skills: ["Node.js", "Express.js", "Firebase (Firestore)", "Midtrans"] },
+  { title: "AI / ML / Data", skills: ["Pandas", "NumPy", "Scikit-learn", "TensorFlow (Basic)", "Gemini AI", "GIS", "Data Visualization"] },
+  { title: "Tools / Cloud", skills: ["Git", "Docker", "Figma", "CorelDraw", "Premiere Pro", "GCP (Cloud Run, Build)", "Vercel"] },
+];
+
+const tagClasses = `
+  border border-box-border px-3 py-1 text-sm text-text-dark
+  hover:bg-text-dark hover:text-text-light transition-colors duration-150 ease-in-out
+`; // Style tag mirip tombol link
+---
+<section id="skills" class="w-full max-w-4xl mx-auto px-6 py-16 md:py-24">
+    <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-10 md:mb-12 animate-on-scroll">
+     SKILLS & TOOLKIT
+   </h2>
+   <div class="space-y-8">
+     {skillCategories.map(category => (
+       <div class="animate-on-scroll">
+         <h3 class="text-lg font-semibold text-box-border mb-4">{category.title}</h3>
+         <div class="flex flex-wrap gap-3">
+           {category.skills.map(skill => (
+             <span class={tagClasses}>{skill}</span>
+           ))}
+         </div>
+       </div>
+     ))}
+   </div>
+</section>

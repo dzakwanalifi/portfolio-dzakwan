@@ -1,0 +1,90 @@
+---
+interface Props {
+  id?: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  liveUrl: string;
+  repoUrl: string;
+  thumbnail: string;
+  styleType: string;
+  gridSpan?: string;
+}
+
+const { title, description, techStack, liveUrl, repoUrl, thumbnail, styleType } = Astro.props;
+
+const baseCardClasses = `
+  p-6 md:p-8 w-full h-full flex flex-col relative group
+  transform transition-all duration-150 ease-in-out
+  hover:-translate-x-px hover:-translate-y-px
+`;
+
+const solidCardClasses = `
+  bg-box-bg-solid text-text-dark border border-box-bg-solid
+  hover:border-box-border group-hover:shadow-[2px_2px_0px_0px_theme(colors.box-border)]
+`;
+
+const outlineCardClasses = `
+  bg-box-bg-outline text-text-dark border border-box-border
+  hover:border-black group-hover:shadow-[2px_2px_0px_0px_theme(colors.black)]
+`;
+
+const cardClasses = `${baseCardClasses} ${styleType === 'solid' ? solidCardClasses : outlineCardClasses}`;
+
+const linkClasses = `
+  inline-flex items-center gap-1.5 px-4 py-1.5
+  border border-transparent /* <-- Mulai dengan border transparan */
+  text-text-dark text-sm font-medium bg-transparent /* <-- Pastikan bg transparan */
+  group-hover:border-black group-hover:bg-text-dark group-hover:text-text-light /* <-- State saat card hover */
+  hover:!border-black hover:!bg-text-dark hover:!text-text-light /* <-- State saat link di-hover LANGSUNG (prioritas lebih tinggi dgn !) */
+  transition-all duration-150 ease-in-out /* <-- Transisi untuk semua properti */
+`;
+
+---
+
+<article class={cardClasses}>
+  {/* Thumbnail Image */}
+  <div class="w-full aspect-video bg-gray-hover-light border border-box-border/50 mb-6 overflow-hidden">
+    <img 
+      src={thumbnail} 
+      alt={`${title} project thumbnail`}
+      class="w-full h-full object-cover"
+      width="400"
+      height="225"
+      loading="lazy"
+    />
+  </div>
+
+  {/* Content */}
+  <div class="flex flex-col flex-grow">
+    <h3 class="text-xl font-bold mb-2">{title}</h3>
+    <p class="text-box-border mb-4 flex-grow">{description}</p>
+    
+    {/* Tech Stack */}
+    <div class="flex flex-wrap gap-2 mb-4">
+      {techStack.map(tech => (
+        <span class="text-sm px-2 py-1 bg-box-border/10 text-box-border">{tech}</span>
+      ))}
+    </div>
+
+    {/* Links */}
+    <div class="flex gap-4 mt-auto">
+      <a 
+        href={liveUrl} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="text-sm underline decoration-box-border/30 hover:decoration-box-border underline-offset-4 transition-colors"
+      >
+        Live Demo
+      </a>
+      <a 
+        href={repoUrl} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="text-sm underline decoration-box-border/30 hover:decoration-box-border underline-offset-4 transition-colors"
+      >
+        Source Code
+      </a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,77 @@
+// src/data/achievements.js
+import { Linkedin, Github, Link, Trophy } from 'lucide-astro';
+
+export const achievements = [
+  {
+    id: "zakathon-2024",
+    title: "1st Place - Zakathon 2024",
+    source: "BAZNAS RI",
+    summary: "Led the development of ZakatKuy, an AI-powered app that enhances zakat processing efficiency by 5x, reducing transaction time from 10 minutes to 2 minutes. Created the Si Amil dashboard for tracking national zakat collection. Leveraged Gemini AI for instant calculations and Whisper V3 for documentation, presenting to 200+ BAZNAS representatives.",
+    skills: ["Team Leadership", "AI Development", "Gemini AI", "Whisper V3", "Dashboard Development", "Process Optimization"],
+    newsUrl: "https://baznas.go.id/news-show/Tim_Mahasiswa_IPB_University_Raih_Juara_Pertama_Zakathon_2024_BAZNAS_RI/2478",
+    githubUrl: "https://github.com/harissabil/ZakatKuy",
+    iconNews: Link,
+    iconGithub: Github,
+  },
+  {
+    id: "satria-data-2024",
+    title: "3rd Place - SATRIA DATA 2024 Big Data Challenge",
+    source: "Puspresnas",
+    summary: "Built a predictive model analyzing 5 million election-related tweets, achieving 76% accuracy and leading in preliminaries. Conducted sentiment and topic analysis on 9 million tweets about presidential candidates using RoBERTa and HDBSCAN, uncovering key controversial issues and shifts in public sentiment.",
+    skills: ["Big Data Analysis", "NLP", "RoBERTa", "HDBSCAN", "Sentiment Analysis", "Topic Modeling"],
+    newsUrl: "https://www.ipb.ac.id/news/index/2024/08/ipb-university-kembali-raih-prestasi-juara-umum-di-satria-data-tahun-2024/",
+    iconNews: Link,
+  },
+  {
+    id: "slashcom-2024",
+    title: "1st Place - Slashcom 2024 Android Hackathon",
+    source: "BEM FIK UPNVJ",
+    summary: "Created SnapLingo, an AI-driven English learning app featuring real-time object translation, gamified vocabulary challenges, and interactive maps. Utilized Yolo-Tiny Image Detection and ML Kit Translation to enhance language learning accessibility and engagement.",
+    skills: ["Android Development", "AI Integration", "Yolo-Tiny", "ML Kit", "UX Design", "Gamification"],
+    projectUrl: "https://github.com/harissabil/snaplingo", // Replace with actual GitHub URL when available
+    iconGithub: Github,
+  },
+  {
+    id: "logika-ui-2024",
+    title: "2nd Place - LOGIKA UI 2024 Paper Competition",
+    source: "HMD Matematika FMIPA UI",
+    summary: "Led data analysis and machine learning efforts for research on optimizing sustainable public transportation routes in Jakarta using VRP and ML, proposing innovative solutions for enhanced transport efficiency and pollution reduction.",
+    skills: ["Research", "Data Analysis", "Machine Learning", "VRP", "Sustainable Solutions"],
+    iconPost: Linkedin,
+  },
+  {
+    id: "innovation-challenge-2023",
+    title: "'Tech Innovator' Winner - 48 Hour Innovation Challenge",
+    source: "Kominfo, BMDV, German Embassy Jakarta",
+    summary: "Led development of 'UrbanEye', an AI-driven solution for streamlined traffic management, winning the 'Tech Innovator' title for impactful AI strategy and technical design in urban mobility.",
+    skills: ["AI Strategy", "Technical Design", "Urban Solutions", "Innovation", "Traffic Management"],
+    iconPost: Linkedin,
+  },
+  {
+    id: "vein-2023",
+    title: "1st Place - International Veterinary Scientific Competition (VEIN)",
+    source: "BEM FKH Universitas Brawijaya",
+    summary: "Pioneered 'BOVISE' (Bovine Spongiform Encephalopathy Early Detection System) using AI, contributing to veterinary science and public health through One Health initiatives.",
+    skills: ["AI in Healthcare", "Medical Imaging", "Disease Detection", "One Health", "Scientific Research"],
+    projectUrl: "https://craids.streamlit.app",
+    iconPost: Link,
+  },
+  {
+    id: "trackaml-2023",
+    title: "3rd Place - TrackAML Hackathon 2023",
+    source: "PPATK",
+    summary: "Developed 'AuditWatch', an innovative application using Ensemble Learning to detect suspicious financial transactions, recognized for advanced AI application in combating financial crimes.",
+    skills: ["Financial Analysis", "Ensemble Learning", "Fraud Detection", "Python", "Machine Learning"],
+    projectUrl: "https://github.com/dzakwanalifi/AuditWatch",
+    iconGithub: Github,
+  },
+  {
+    id: "dqlab-ai-2022",
+    title: "1st Place - DQLab AI Competition",
+    source: "DQLab",
+    summary: "Created a groundbreaking AI chatbot designed to enhance education through interactive learning, personalized engagement, and comprehensive modern educational tools, setting new standards in digital learning platforms.",
+    skills: ["Chatbot Development", "NLP", "Educational Technology", "AI", "Interactive Learning"],
+    postUrl: "https://www.linkedin.com/posts/dzakwanalifi_dqlab-bootcamp-portfolio-capstone-dzakwan-activity-7103692089305010176-GliV/",
+    iconPost: Linkedin,
+  },
+];

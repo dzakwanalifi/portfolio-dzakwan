@@ -1,0 +1,11 @@
+---
+interface Props { name: string; title: string; tagline?: string; }
+const { name, title, tagline } = Astro.props;
+---
+<section id="intro" class="w-full max-w-4xl mx-auto px-6 pt-20 pb-12 md:pt-32 md:pb-16">
+  <h1 class="text-4xl md:text-6xl font-bold text-text-dark mb-3 animate-on-scroll">{name}.</h1>
+  <h2 class="text-lg md:text-xl font-medium text-box-border mb-6 animate-on-scroll">{title}.</h2>
+  {tagline && (
+    <p class="text-base md:text-lg text-box-border max-w-2xl animate-on-scroll">{tagline}</p>
+  )}
+</section>

@@ -1,0 +1,77 @@
+---
+// src/components/AchievementsSection.astro
+import { achievements } from '../data/achievements.js';
+import { ExternalLink } from 'lucide-astro';
+
+const itemClasses = `
+    p-6 md:p-8 w-full border border-box-border bg-box-bg-outline text-text-dark
+    transition-all duration-150 ease-in-out hover:border-black hover:bg-gray-hover-light
+`;
+
+const tagClasses = `
+    inline-block text-xs border border-box-border/50 px-2 py-0.5 text-box-border/80
+    transition-colors duration-150 ease-in-out group-hover:border-black/70 group-hover:text-black
+`;
+
+const linkClasses = `
+    inline-flex items-center gap-1.5 px-3 py-1 border border-box-border text-text-dark text-sm font-medium
+    hover:bg-text-dark hover:text-text-light transition-colors duration-150 ease-in-out
+`;
+---
+
+<section id="achievements" class="w-full max-w-4xl mx-auto px-6 py-16 md:py-24">
+    <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-10 md:mb-12 animate-on-scroll">
+         LEARNING & ACHIEVEMENTS
+     </h2>
+     <div class="space-y-6 md:space-y-8">
+         {achievements.map(item => (
+             <article class={`${itemClasses} animate-on-scroll group`}>
+                 <div class="flex justify-between items-start mb-3">
+                     <h3 class="text-xl font-bold leading-tight">{item.title}</h3>
+                     {item.source && <span class="text-sm font-medium text-box-border/80 ml-4 flex-shrink-0">{item.source}</span>}
+                 </div>
+                 <p class="text-base text-box-border mb-4 leading-relaxed">{item.summary}</p>
+
+                 {item.skills && item.skills.length > 0 && (
+                     <div class="mb-5 flex flex-wrap gap-2">
+                         {item.skills.map(skill => (
+                             <span class={tagClasses}>{skill}</span>
+                         ))}
+                     </div>
+                 )}
+
+                 {/* Links - Diperbarui */}
+                 <div class="flex flex-wrap gap-3 pt-2">
+                     {/* Link Proyek/Aplikasi Utama */}
+                     {item.projectUrl && item.projectUrl !== "#" && (
+                         <a href={item.projectUrl} target="_blank" rel="noopener noreferrer" class={linkClasses}>
+                             View Project
+                             <ExternalLink class="w-3.5 h-3.5" strokeWidth={2}/>
+                         </a>
+                     )}
+                     {/* Link GitHub Spesifik (jika ada) */}
+                     {item.githubUrl && item.githubUrl !== "#" && item.iconGithub && (
+                         <a href={item.githubUrl} target="_blank" rel="noopener noreferrer" class={linkClasses}>
+                             GitHub Repo
+                             <item.iconGithub class="w-3.5 h-3.5" strokeWidth={2}/>
+                         </a>
+                     )}
+                     {/* Link Berita (jika ada) */}
+                     {item.newsUrl && item.newsUrl !== "#" && item.iconNews && (
+                         <a href={item.newsUrl} target="_blank" rel="noopener noreferrer" class={linkClasses}>
+                             View News
+                             <item.iconNews class="w-3.5 h-3.5" strokeWidth={2}/>
+                         </a>
+                     )}
+                     {/* Link Post LinkedIn (jika ada) */}
+                     {item.postUrl && item.postUrl !== "#" && item.iconPost && (
+                         <a href={item.postUrl} target="_blank" rel="noopener noreferrer" class={linkClasses}>
+                             View Post
+                             <item.iconPost class="w-3.5 h-3.5" strokeWidth={2}/>
+                         </a>
+                     )}
+                 </div>
+             </article>
+         ))}
+     </div>
+</section>

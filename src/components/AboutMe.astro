@@ -1,0 +1,12 @@
+---
+import { siteConfig } from '../data/siteConfig.js';
+
+const aboutText1 = `A motivated ${siteConfig.title.split('|')[0].trim()} at IPB University with a keen interest in leveraging data, code, and design to solve real-world problems.`;
+const aboutText2 = `Actively seeking opportunities to apply skills in data analysis, machine learning model development, and modern web technologies in challenging projects. Passionate about continuous learning and collaboration. Currently exploring machine learning applications in fintech and automating student productivity tools.`;
+---
+<section id="about" class="w-full max-w-4xl mx-auto px-6 pb-12 md:pb-16">
+  <div class="space-y-4 text-base md:text-lg text-box-border max-w-2xl">
+    <p class="animate-on-scroll leading-relaxed">{aboutText1}</p>
+    <p class="animate-on-scroll leading-relaxed">{aboutText2}</p>
+  </div>
+</section>

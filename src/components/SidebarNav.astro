@@ -1,0 +1,108 @@
+---
+// src/components/SidebarNav.astro
+
+// Daftar section untuk navigasi
+const sections = [
+  { id: 'intro', label: 'Intro' },
+  { id: 'about', label: 'About' },
+  { id: 'web-projects', label: 'Web Projects' },
+  { id: 'other-projects', label: 'Other Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'achievements', label: 'Achievements' },
+  { id: 'contact', label: 'Contact' },
+];
+
+// Style untuk link navigasi
+const linkBaseClasses = `
+  block w-full px-4 py-2 text-sm text-left transition-colors duration-150 ease-in-out
+  border border-transparent hover:border-box-border hover:bg-gray-hover-light hover:text-text-dark
+`; // Dasar: transparan, hover punya border & bg terang
+
+// Style untuk link aktif (akan di-handle JS nanti)
+const linkActiveClasses = `
+  !bg-box-border !text-text-light border-box-border
+`; // Aktif: bg abu gelap, teks putih
+---
+
+{/* Sidebar container - Fixed di kiri, sembunyikan di mobile (md:flex) */}
+<nav class="fixed top-0 left-0 h-screen w-48 bg-primary-bg border-r border-box-border/30 z-40 hidden md:flex flex-col justify-center">
+  <ul class="space-y-1">
+    {sections.map((section) => (
+      <li>
+        <a
+          href={`#${section.id}`}
+          class={linkBaseClasses}
+          data-nav-id={section.id} {/* Atribut data untuk identifikasi oleh JS */}
+        >
+          {section.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+{/* Script untuk highlight link aktif saat scroll */}
+<script define:vars={{ linkActiveClasses }}>
+  // Opsi untuk Intersection Observer
+  const observerOptions = {
+    root: null, // viewport
+    rootMargin: "-40% 0px -60% 0px", // Sesuaikan margin agar section di tengah lebih mungkin terdeteksi
+    threshold: 0 // Trigger segera saat section masuk/keluar area margin
+  };
+
+  const navLinks = document.querySelectorAll('nav a[data-nav-id]');
+  const sections = document.querySelectorAll('section[id], footer[id]');
+
+  // Fungsi untuk menghapus kelas aktif dari semua link
+  const removeActiveClasses = () => {
+    navLinks.forEach(link => {
+      link.classList.remove(...linkActiveClasses.split(' ').filter(Boolean)); // Hapus kelas aktif
+    });
+  };
+
+  // Callback saat section masuk/keluar viewport
+  const observerCallback = (entries) => {
+    let visibleSectionId = null;
+
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Ambil section ID yang paling terlihat (atau yang pertama masuk)
+        // Heuristik sederhana: ambil yang pertama terdeteksi dalam loop ini
+        if (!visibleSectionId) {
+             visibleSectionId = entry.target.id;
+        }
+      }
+    });
+
+    // Jika ada section yang terlihat, highlight linknya
+    if (visibleSectionId) {
+      removeActiveClasses(); // Hapus dulu semua yg aktif
+      const activeLink = document.querySelector(`nav a[data-nav-id="${visibleSectionId}"]`);
+      if (activeLink) {
+        activeLink.classList.add(...linkActiveClasses.split(' ').filter(Boolean)); // Tambah kelas aktif
+      }
+    }
+    // Jika tidak ada (misal di paling atas/bawah), bisa pilih untuk tidak highlight apa pun atau highlight yg pertama/terakhir
+    // Untuk sekarang, jika tidak ada yg terdeteksi, biarkan tidak ada yg aktif
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+  // Amati semua section target
+  sections.forEach(sec => {
+    if (sec.id) { // Pastikan ada ID
+         observer.observe(sec);
+    }
+  });
+
+  // Event listener untuk klik link agar langsung aktif (opsional, tapi UX lebih baik)
+   navLinks.forEach(link => {
+       link.addEventListener('click', () => {
+           setTimeout(() => { // Beri sedikit jeda agar scroll selesai
+               removeActiveClasses();
+               link.classList.add(...linkActiveClasses.split(' ').filter(Boolean));
+           }, 100); // Sesuaikan jeda jika perlu
+       });
+   });
+
+</script>

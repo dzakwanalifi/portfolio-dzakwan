@@ -1,43 +1,33 @@
 ---
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
 import HeroIntro from '../components/HeroIntro.astro';
 import AboutMe from '../components/AboutMe.astro';
-import ProjectGrid from '../components/ProjectGrid.astro';
-import OtherProjectsSection from '../components/OtherProjectsSection.astro';
+import ProjectGrid from '../components/ProjectGrid.tsx'; // <-- Ubah ke .tsx
+import OtherProjectsSection from '../components/OtherProjectsSection.tsx'; // <-- Ubah ke .tsx
 import SkillsToolkit from '../components/SkillsToolkit.astro';
 import AchievementsSection from '../components/AchievementsSection.astro';
 import ContactFooter from '../components/ContactFooter.astro';
 import { siteConfig } from '../data/siteConfig.js';
+import { projects } from '../data/projects.js'; // <-- Impor data web projects
+import { otherProjects } from '../data/otherProjects.js'; // <-- Impor data other projects
 ---
 
 <Layout title={`${siteConfig.name} - Portfolio`}>
   <main class="min-h-screen flex flex-col">
-
-    <HeroIntro
-      name={siteConfig.name}
-      title={siteConfig.title}
-      tagline={siteConfig.tagline}
-    />
-
+    <HeroIntro name={siteConfig.name} title={siteConfig.title} tagline={siteConfig.tagline} />
     <AboutMe />
-
     <hr class="border-t border-box-border/30 max-w-4xl mx-auto w-full my-12 md:my-16">
 
-    <ProjectGrid />
+    <ProjectGrid projects={projects} client:load />
 
     <hr class="border-t border-box-border/30 max-w-4xl mx-auto w-full my-12 md:my-16">
-
-    <OtherProjectsSection />
+    <OtherProjectsSection projects={otherProjects} client:load />
 
     <hr class="border-t border-box-border/30 max-w-4xl mx-auto w-full my-12 md:my-16">
-
     <SkillsToolkit />
-
     <hr class="border-t border-box-border/30 max-w-4xl mx-auto w-full my-12 md:my-16">
-
     <AchievementsSection />
-
     <ContactFooter />
-
   </main>
 </Layout>

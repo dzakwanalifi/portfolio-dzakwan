@@ -28,3 +28,26 @@
   footer .animate-on-scroll:nth-child(2) { transition-delay: 0.2s; } /* Email */
   footer .animate-on-scroll:nth-child(3) { transition-delay: 0.3s; } /* Ikon */
   footer .animate-on-scroll:nth-child(4) { transition-delay: 0.4s; } /* Copyright */
+
+  .blinking-cursor {
+    display: inline-block;
+    width: 10px; /* Sesuaikan lebar */
+    /* Sesuaikan tinggi agar cocok dengan H1 */
+    height: clamp(1.8rem, 5vw, 3rem); /* Contoh: tinggi adaptif */
+    background-color: theme('colors.text-dark');
+    margin-left: 8px;
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom; /* Coba juga 'middle' atau 'text-bottom' */
+  }
+  
+  @keyframes blink {
+    from, to { background-color: transparent; }
+    50% { background-color: theme('colors.text-dark'); }
+  }
+  
+  /* Sembunyikan di mobile jika diinginkan */
+  @media (max-width: 767px) {
+    .blinking-cursor {
+      /* display: none; */ /* Uncomment jika ingin disembunyikan */
+    }
+  }

@@ -12,9 +12,11 @@
     "@astrojs/preact": "^4.0.8",
     "@astrojs/react": "^4.2.3",
     "@astrojs/tailwind": "^6.0.2",
+    "@nanostores/preact": "^1.0.0",
     "astro": "^5.6.1",
     "cmdk": "^1.1.1",
     "lucide-astro": "^0.487.0",
+    "nanostores": "^1.0.1",
     "preact": "^10.26.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

@@ -17,12 +17,20 @@ const linkClasses = `
   inline-flex items-center gap-1.5 px-3 py-1 border border-box-border text-text-dark text-sm font-medium
   hover:bg-text-dark hover:text-text-light transition-colors duration-150 ease-in-out
 `;
+
+// Persiapan untuk judul reveal per kata
+const sectionTitle = "TOOLS & DATA SCIENCE PROJECTS";
+const titleWords = sectionTitle.split(' ');
 ---
 
 <section id="other-projects" class="w-full max-w-4xl mx-auto px-6 py-16 md:py-24">
-    <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-10 md:mb-12 animate-on-scroll">
-     TOOLS & DATA SCIENCE PROJECTS
-   </h2>
+  {/* Modifikasi H2 */}
+  <h2 class="text-2xl md:text-3xl font-bold text-text-dark mb-10 md:mb-12 flex items-baseline gap-x-2 md:gap-x-3">
+    <span class="text-2xl md:text-3xl font-bold text-box-border/80 animate-on-scroll" style="transition-delay: 0s;">></span>
+    {titleWords.map((word, index) => (
+      <span class="block animate-on-scroll" style={`transition-delay: ${(index + 1) * 0.08}s`}>{word}</span>
+    ))}
+  </h2>
    <div class="space-y-6 md:space-y-8">
      {otherProjects.map(item => (
        <article class={`${itemClasses} animate-on-scroll group`}>
